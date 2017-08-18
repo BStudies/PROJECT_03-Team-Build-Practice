@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import axios from 'axios';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -35,6 +37,14 @@ class App extends Component {
       default:
         break;
     }
+  }
+
+  componentDidMount(){
+    axios.get('/movies ')
+    .then((res) => {
+      this.setState({
+      })
+    })
   }
 
   render() {
