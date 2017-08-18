@@ -9,8 +9,12 @@ import Home from './components/Home';
 
 import Login from './components/Login';
 import Register from './components/Register';
-
 import MoviesList from './components/MoviesList';
+
+
+
+
+
 
 class App extends Component {
   constructor() {
@@ -26,9 +30,12 @@ class App extends Component {
     this.handleMovieSubmit = this.handleMovieSubmit.bind(this);
     this.handleMovieEditSubmit = this.handleMovieEditSubmit.bind(this);
     this.selectEditedMovie = this.selectEditedMovie.bind(this);
-  }
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
 
-  // LIFECYCLE
+  }
+  
+   // LIFECYCLE
 
   componentDidMount() {
     axios.get('/movies')
@@ -38,8 +45,11 @@ class App extends Component {
         });
       }).catch(err => console.log(err));
   }
+    // PAGINATION
 
-  // PAGINATION
+}
+  
+
 
   setPage(page) {
     console.log('click');
@@ -53,6 +63,11 @@ class App extends Component {
       case 'home':
         return <Home />;
         break;
+      case 'login':
+        return <Login handleLoginSubmit={this.handleLoginSubmit} />;
+        break;
+      case 'register':
+        return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
       case 'movies':
         return (<MoviesList
           movieData={this.state.movieData}
@@ -64,6 +79,45 @@ class App extends Component {
       default:
         break;
     }
+  }
+
+  handleLoginSubmit(e, username, password){
+    e.preventDefault();
+    axios.post('/auth/login',{
+      username,
+      password,
+    }).then(res => {
+      this.setState({
+        auth: res.data.auth,
+        user: res.data.user,
+        currentPage: 'home',
+      });
+    }).catch(err => console.log(err));
+  }
+
+  handleRegisterSubmit(e, username, password, email){
+    e.preventDefault();
+    axios.post('/auth/register',{
+      username,
+      password,
+    }).then(res => {
+      this.setState({
+        auth: res.data.auth,
+        user: res.data.user,
+        currentPage: 'home',
+      });
+    }).catch(err => console.log(err));
+  }
+
+  logOut(){
+    axios.get('/auth/logout')
+    .then(res => {
+      console.log(res);
+      this.setState({
+        auth: false,
+        currentPage: 'home',
+      });
+    }).catch(err => console.log(err));
   }
 
   // MOVIES
