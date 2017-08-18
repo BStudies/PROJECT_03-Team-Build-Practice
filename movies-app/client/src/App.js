@@ -23,6 +23,8 @@ class App extends Component {
   }
 
   this.setPage = this.setPage.bind(this);
+  this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+  this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
 }
 
   setPage(page) {
@@ -37,6 +39,11 @@ class App extends Component {
       case 'home':
         return <Home />;
         break;
+      case 'login':
+        return <Login handleLoginSubmit={this.handleLoginSubmit} />;
+        break;
+      case 'register':
+        return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
       default:
         break;
     }
@@ -55,6 +62,7 @@ class App extends Component {
       });
     }).catch(err => console.log(err));
   }
+
   handleRegisterSubmit(e, username, password, email){
     e.preventDefault();
     axios.post('/auth/register',{
@@ -69,10 +77,21 @@ class App extends Component {
     }).catch(err => console.log(err));
   }
 
+  logOut(){
+    axios.get('/auth/logout')
+    .then(res => {
+      console.log(res);
+      this.setState({
+        auth: false,
+        currentPage: 'home',
+      });
+    }).catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
-        <Header setPage={this.setPage} />
+        <Header setPage={this.setPage} logOut={this.logOut} />
         {this.decideWhichPage()}
         <Footer />
       </div>
