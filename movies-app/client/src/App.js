@@ -37,6 +37,10 @@ class App extends Component {
       default:
         break;
     }
+    case ('movies'):
+    return <MoviesList movieData={this.state.movieData}
+    {/* there will be other things here too*/} />;
+    break;
   }
 
   componentDidMount(){
