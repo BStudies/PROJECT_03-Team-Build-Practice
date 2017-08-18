@@ -12,10 +12,6 @@ import Register from './components/Register';
 import MoviesList from './components/MoviesList';
 
 
-
-
-
-
 class App extends Component {
   constructor() {
     super();
@@ -34,7 +30,7 @@ class App extends Component {
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
 
   }
-  
+
    // LIFECYCLE
 
   componentDidMount() {
@@ -46,9 +42,6 @@ class App extends Component {
       }).catch(err => console.log(err));
   }
     // PAGINATION
-
-}
-  
 
 
   setPage(page) {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Movie from './Movie';
 import MovieAddForm from './MovieAddForm';
-import MovieEditForm from './MovieEditForm';
+import MovieEditForm from './MoviesEditForm';
 
 const MoviesList = (props) => {
   return (

@@ -10,18 +10,17 @@ class Register extends Component{
     }
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-}
 
-handleInputChange(e){
-  const name = e.target.name;
-  const value = e.target.value;
-  this.setState({
+  handleInputChange(e){
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
     [name]: value,
-  });
-}
+    });
+  }
 
-render(){
-  return (
+  render(){
+    return (
     <div>
       <form onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state.username), this.state.password, this.state.email}>
         <input type="username" name="username" value={this.state.username} placeholder="Enter Username" onChange={this.handleInputChange} />
@@ -30,5 +29,8 @@ render(){
         <input type="submit"></input>
       </form>
     </div>
-  )
+    )
+  }
 }
+
+export default Register;
