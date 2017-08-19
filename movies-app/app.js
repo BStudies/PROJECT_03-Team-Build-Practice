@@ -44,6 +44,8 @@ const authRoutes = require('./routes/auth-routes');
 app.use('/auth', authRoutes);
 const movieRoutes = require('./routes/movie-routes');
 app.use('/movies', movieRoutes);
+const userRoutes = requuire('./routes/user-routes');
+app.use('/user', userRoutes);
 
 
 //error handler 
