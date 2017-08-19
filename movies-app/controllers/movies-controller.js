@@ -24,8 +24,11 @@ moviesController.create = (req, res) => {
         description: req.body.description,
         genre: req.body.genre,
     },req.user.id)
-    .then( res => {
-        res.redirect('/movies')
+    .then( movie => {
+        res.json({
+            message: 'Movie has been added',
+            data: movie,
+        })
     })
     .catch(err => {
         console.log(err);
@@ -48,14 +51,19 @@ moviesController.show = () => {
 }
 
 //put
-movieController.update = function(req, res){
+moviesController.update = function(req, res){
     Movie.update({
         title: req.body.title,
         genre: req.body.genre,
         description: req.body.description,
-    }, req.params.id).then(function(movie){
-        res.redirect(`/movies/${req.params.id}`);
-    }).catch(function(err){
+    }, req.params.id)
+    .then(movie => {
+        res.json({
+            message: 'Movie updated',
+            data: movie,
+        })
+    })
+    .catch(function(err){
         console.log(err);
         res.status(500).json(err);
     })
@@ -63,18 +71,6 @@ movieController.update = function(req, res){
 
 
 
-
-movieController.edit = function(req, res){
-    Movie.findById(req.params.id)
-    .then(function(movie){
-        res.render('movies/movie-single-edit',{
-            currentPage: 'edit',
-            data: movie,
-        })
-    }).catch(function(err){
-        res.status(500).json(err);
-    })
-}
 
 
 
@@ -90,3 +86,6 @@ moviesController.delete = () => {
         res.status(500).json(err);
     });
 }
+
+
+module.exports = moviesController;
