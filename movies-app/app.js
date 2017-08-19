@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
-const authRoutes = require('./routes/auth-routes');
+const authRoutes = require('./routes/auth-routes.js');
 app.use('/auth', authRoutes);
 const movieRoutes = require('./routes/movie-routes');
 app.use('/movies', movieRoutes);
