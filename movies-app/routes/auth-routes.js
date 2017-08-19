@@ -19,3 +19,19 @@ authRouter.get('/login', authHelpers.loginRedirect, (req,res) => {
         currentPage: 'register',
     })
 })
+
+
+authRouter.post('/register', usersController.create);
+
+authRouter.post('/login', passport.authenticate('local', {
+        successRedirect: '/user',
+        failureRedirect: '/auth/login',
+        failureFlash: true,
+    })
+)
+
+
+authRouter.get('/logout', (req, res)=>{
+    req.logout();
+    res.redirect('/');
+})
