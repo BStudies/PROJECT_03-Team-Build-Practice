@@ -36,7 +36,7 @@ moviesController.create = (req, res) => {
     })
 }
 
-moviesController.show = () => {
+moviesController.show = (req, res) => {
     Movie.findById(req.params.id)
     .then(movie=>{
         res.json({
