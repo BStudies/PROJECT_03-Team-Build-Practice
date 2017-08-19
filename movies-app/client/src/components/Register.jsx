@@ -22,11 +22,11 @@ class Register extends Component{
   render(){
     return (
     <div>
-      <form onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state.username), this.state.password, this.state.email}>
+      <form >
         <input type="username" name="username" value={this.state.username} placeholder="Enter Username" onChange={this.handleInputChange} />
-        <input type="password" name="password" value={this.state.password} placeholder="Enter Password" onChange={this.state.handleInputChange} />
-        <input type="email" name="email" value={this.state.email} placeholder="Enter Email" onChange={this.state.handleInputChange} />
-        <input type="submit"></input>
+        <input type="password" name="password" value={this.state.password} placeholder="Enter Password" onChange={this.handleInputChange} />
+        <input type="email" name="email" value={this.state.email} placeholder="Enter Email" onChange={this.handleInputChange} />
+        <input type="submit" onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state.username, this.state.password, this.state.email)}/>
       </form>
     </div>
     )
