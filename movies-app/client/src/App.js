@@ -159,7 +159,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header setPage={this.setPage} logOut={this.logOut} />
+        <main>
         {this.decideWhichPage()}
+        </main>
         <Footer />
       </div>
     );
