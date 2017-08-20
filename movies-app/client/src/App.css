@@ -8,7 +8,7 @@
 main {
   display: flex;
   min-height: 75vh;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .footer {
@@ -19,6 +19,7 @@ main {
   background-color: black;
   color: white;
 }
+
 
 h1 {
   font-size: 35px;
